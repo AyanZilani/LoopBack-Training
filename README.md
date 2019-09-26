@@ -18,11 +18,11 @@ Learn the following key concepts:
         "dataSource": "mysql",
         "public": false,
         "relations": {
-        "user": {
-            "type": "belongsTo",
-            "model": "Client",
-            "foreignKey": "userId"
-        }
+            "user": {
+                "type": "belongsTo",
+                "model": "Client",
+                "foreignKey": "userId"
+            }
         }
     }
     ```
