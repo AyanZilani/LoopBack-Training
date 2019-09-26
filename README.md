@@ -1,7 +1,27 @@
 # loopback3
 
-Loopback 3 related code
+## Extending/Inheriting `User` base model to create a custom user model `Client`.
 
-Checkout the branch for each stage of the tutorial:
-
-1  `customuser` => Create custom user model and the corresponding automigration file.
+Learn the following key concepts:  
+* Installing node.js and xampp   
+* Installing loopback 3.x cli    
+* Creating new database in MySQL through PHPmyadmin with the corresponding user account   
+* Configuring loopback to connect to MySQL database  
+* Automigrating the models into MySQL database  
+* Configuring the built-in models to be created in the MySQL DB (`server/model-config.json`)  
+  
+Extending/inheriting the built-in model require the `AccessToken` model relations to be overwritten:  
+**server/model-config.json**  
+```javascript
+"AccessToken": {
+    "dataSource": "mysql",
+    "public": false,
+    "relations": {
+      "user": {
+        "type": "belongsTo",
+        "model": "Client",
+        "foreignKey": "userId"
+      }
+    }
+}
+```
