@@ -1,8 +1,6 @@
 /* eslint-disable */
 'use strict';
-
 var app = require('../server');
-
 var modelList = [
     'Client',
     'AccessToken',
@@ -10,21 +8,13 @@ var modelList = [
     'RoleMapping',
     'Role'
 ];
+var roleList = [
+    'admin',
+    'officer',
+    'user',
+    'guest'
+];
 var ds = app.datasources.mysql;
-/*
-ds.automigrate(modelList,function(err){
-    if(err){
-        console.log("Failed to automigrate the tables :",err);
-        return process.exit(1);
-    }
-
-    //insert default default client
-
-    console.log("The following tables was successfully created:");
-    console.log(modelList);
-    process.exit(0);
-})
-*/
 //==================== Promisify Callback =========================
 function createTables(ds,tables){
     return new Promise((resolve,reject)=>{
@@ -32,6 +22,15 @@ function createTables(ds,tables){
             if(err){return reject(err)}
             resolve(tables);
         })
+    })
+}
+function createRole(app,role){
+    var Role = app.models.Role;
+    return new Promise((resolve,reject)=>{
+        Role.create({"name":role},(err,res)=>{
+            if(err){return reject(err);}
+            resolve(res);
+        });
     })
 }
 
