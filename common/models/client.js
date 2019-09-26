@@ -8,6 +8,12 @@ module.exports = function(Client) {
         app = a;
     });
     Client.beforeRemote("create",function(ctx,model,next){
+        // 1 check role field
+        // 2 check role valid
+        // read registrator role
+        // valid authorization
+        
+
         console.log("before remote create (ctx.args.data)", ctx.args.data);
         var userinfo = ctx.args.data;
         if(userinfo.role){
@@ -60,8 +66,6 @@ function disableUnusedRemotes(Client){
     Client.disableRemoteMethodByName('prototype.__get__accessTokens');
     Client.disableRemoteMethodByName('prototype.__updateById__accessTokens');
 }
-
-
 //========================================================================
 async function sanitizeRegistration(app,ctx,next){
     var appliedRole = ctx.args.data.role;
