@@ -1,6 +1,6 @@
 # loopback3
 
-## Extending/Inheriting `User` base model to create a custom user model `Client`.
+## 1.0 Extending/Inheriting `User` base model to create a custom user model `Client`.
 
 Learn the following key concepts:  
 * Installing `node.js` and `xampp`   
@@ -11,15 +11,15 @@ Learn the following key concepts:
 **/server/datasources.json**   
     ```javascript
     "mysql": {
-        "host": "localhost",
-        "port": 3306,
-        "url": "",
-        "database": "lbapp",
-        "password": "K7eCisFNXxOSLT6m",
-        "name": "mysql",
-        "user": "lbapp",
-        "connector": "mysql"
-    }
+    "host": "localhost",
+    "port": 3306,
+    "url": "",
+    "database": "lbapp",
+    "password": "K7eCisFNXxOSLT6m",
+    "name": "mysql",
+    "user": "lbapp",
+    "connector": "mysql"
+  }
     ```
 * Automigrating the models into MySQL database (`/server/bin/automigrate.js`) 
    - Learn how to use `Fat Arrow Function`, `Promises` and `Async/Await` (ES6 features)
