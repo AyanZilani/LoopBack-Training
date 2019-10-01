@@ -6,7 +6,10 @@ var modelList = [
     'AccessToken',
     'ACL',
     'RoleMapping',
-    'Role'
+    'Role',
+    'Project',
+    'Team',
+    'Member'
 ];
 var ds = app.datasources.mysql;
 //==================== Promisify Callback =========================
