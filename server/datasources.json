@@ -7,10 +7,10 @@
     "host": "localhost",
     "port": 3306,
     "url": "",
-    "database": "loop",
+    "database": "lbapp",
     "password": "sxQbrFWNInW2BYGu",
     "name": "mysql",
-    "user": "Loop",
+    "user": "lbapp",
     "connector": "mysql"
   }
 }
