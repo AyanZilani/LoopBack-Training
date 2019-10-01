@@ -13,10 +13,15 @@
   },
   "validations": [],
   "relations": {
-    "creator":{
-      "type":"belongsTo",
-      "model":"Client",
-      "foreignKey":"clientId"
+    "creator": {
+      "type": "belongsTo",
+      "model": "Client",
+      "foreignKey": "clientId"
+    },
+    "teams": {
+      "type": "hasMany",
+      "model": "Team",
+      "foreignKey": "projectId"
     }
   },
   "acls": [],

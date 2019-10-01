@@ -3,11 +3,43 @@
 module.exports = function(Client) {
     disableUnusedRemotes(Client);
 
+
+    Client.remoteMethod('close',{
+        accepts:{arg:"id", type:"number"},
+        returns:{arg:"msg", type:"string"},
+        http:{
+            "verb":"put"
+        }
+    });
+
+    Client.close = async function(id,cb){
+        try{
+            let isUserExist = await _exists(app.models.Client,id);
+            if(!isUserExist){
+                cb({"name":"Not Found","status":404,"message":"User do not exist!"});
+                return;
+            }
+            let client = await _findById(app.models.Client,id);
+            if(client.status==='offline'){
+                cb(null,"User is already Offline");
+                return;
+            }
+            let result = await _updateAttribute(client,'status','offline');
+            cb(null,`User (${result.username}) session have been closed forcefully by you.`);
+        }catch(err){
+            cb({
+                "name":"Remote Error",
+                "status":500,
+                "message":err
+            })
+        }
+    }
+
     var app;
     Client.on('attached',a=>{
         app = a;
     });
-    Client.beforeRemote("create",function(ctx,model,next){
+    Client.beforeRemote("create",function(ctx,model,next){``
         // 1 check role field
         // 2 check role valid
         // read registrator role
@@ -93,6 +125,38 @@ function _findOne(model,filter){
         model.findOne(filter,(err,res)=>{
             if(err){return reject(err)}
             resolve(res);
+        })
+    })
+}
+
+function _exists(model,id){
+    return new Promise((resolve,reject)=>{
+        model.exists(id,(err,exists)=>{
+            if(err){return reject(err)}
+            resolve(exists);
+        })
+    })
+}
+function _findById(model,id,filter=null){
+    return new Promise((resolve,reject)=>{
+        if(filter){
+            model.findById(id,filter,(err,result)=>{
+                if(err){return reject(err)}
+                resolve(result);
+            })
+        }else{
+            model.findById(id,(err,result)=>{
+                if(err){return reject(err)}
+                resolve(result);
+            })
+        }
+    })
+}
+function _updateAttribute(model,name,value){
+    return new Promise((resolve,reject)=>{
+        model.updateAttribute(name,value,(err,result)=>{
+            if(err){return reject(err)}
+            resolve(result);
         })
     })
 }

@@ -8,15 +8,15 @@
   "properties": {},
   "validations": [],
   "relations": {
-    "user":{
-      "type":"belongsTo",
-      "model":"Client",
-      "foreignKey":"clientId"
+    "user": {
+      "type": "belongsTo",
+      "model": "Client",
+      "foreignKey": "clientId"
     },
-    "team":{
-      "type":"belongsTo",
-      "model":"Team",
-      "foreignKey":"teamId"
+    "team": {
+      "type": "belongsTo",
+      "model": "Team",
+      "foreignKey": "teamId"
     }
   },
   "acls": [],
