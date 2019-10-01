@@ -14,8 +14,24 @@
     }
   },
   "validations": [],
-  "relations": [],
-  "acls":[
+  "relations": {
+    "projects": {
+      "type": "hasMany",
+      "model": "Project",
+      "foreignKey": "clientId"
+    },
+    "teams": {
+      "type": "hasMany",
+      "model": "Team",
+      "foreignKey": "clientId"
+    },
+    "members" : {
+      "type": "hasMany",
+      "model": "Member",
+      "foreignKey": "clientId"  
+    }
+  },
+  "acls": [
     {
       "principalType": "ROLE",
       "principalId": "$everyone",
@@ -33,6 +49,24 @@
       "principalId": "officer",
       "permission": "ALLOW",
       "property": "create"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "__create__projects"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "__get__projects"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "__create__teams"
     }
   ],
   "methods": {}

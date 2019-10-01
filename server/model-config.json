@@ -42,5 +42,17 @@
   "Client": {
     "dataSource": "mysql",
     "public": true
+  },
+  "Project": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Team": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "Member": {
+    "dataSource": "mysql",
+    "public": true
   }
 }
